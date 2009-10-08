@@ -602,27 +602,14 @@ draw_box (GtkStyle      *style,
         }
       else /* Normal button. */
         {
-          ThemeButtonKind kind = kThemePushButtonNormal;
+          // ThemeButtonKind kind = kThemePushButtonNormal;
+	  // Using kThemePushButton allows for dynamically sized buttons
+	  // including those higher than one line of text.
+          ThemeButtonKind kind = kThemePushButton;
 
           if (is_path_bar_button (widget) || is_icon_only_button (widget))
             {
               kind = kThemeBevelButton;
-            }
-          /* FIXME: Disabled for now. We still need it, but could do
-           * something like checking the size using HITheme API and if our
-           * button doesn't fit, use a square one.
-           */ 
-          else if (0)
-            {
-              gdouble ratio;
-              int max_height = 35; /* FIXME: This should be calculated somehow. */
-
-              /* Use weird heuristics for now... */
-              ratio = (gdouble) height / (gdouble) width;
-              if (height >= max_height || (ratio > 0.4 && ratio < 1.5))
-                kind = kThemeBevelButton;
-              else
-                kind = kThemePushButtonNormal;
             }
 
           quartz_draw_button (style, window, state_type, shadow_type,
