@@ -1410,6 +1410,8 @@ draw_flat_box (GtkStyle      *style,
                                    area, widget, detail, x, y, width, height);
       return;
     }
+  parent_class->draw_flat_box (style, window, state_type, shadow_type,
+			       area, widget, detail, x, y, width, height);
 }
 
 static void
