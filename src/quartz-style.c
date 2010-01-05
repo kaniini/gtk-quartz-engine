@@ -1369,7 +1369,7 @@ draw_flat_box (GtkStyle      *style,
 
       return;
     }
-  else if (GTK_IS_PROGRESS_BAR (widget) && IS_DETAIL (detail, "trough"))
+  if (GTK_IS_PROGRESS_BAR (widget) && IS_DETAIL (detail, "trough"))
     {
       CGContextRef context;
       HIRect rect;
@@ -1395,13 +1395,13 @@ draw_flat_box (GtkStyle      *style,
 
       return;
     }
-  else if (IS_DETAIL (detail, "checkbutton"))
+  if (IS_DETAIL (detail, "checkbutton"))
     {
       /* We don't want any background, no prelight etc. */
       return;
     }
-  else if (IS_DETAIL (detail, "cell_even") || IS_DETAIL (detail, "cell_odd") ||
-           IS_DETAIL (detail, "cell_even_ruled") || IS_DETAIL (detail, "cell_odd_ruled"))
+  if (IS_DETAIL (detail, "cell_even") || IS_DETAIL (detail, "cell_odd") ||
+      IS_DETAIL (detail, "cell_even_ruled") || IS_DETAIL (detail, "cell_odd_ruled"))
     {
       /* FIXME: Should draw using HITheme, or get the right selection
        * color.
