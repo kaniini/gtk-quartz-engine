@@ -18,7 +18,13 @@ cd $srcdir
 	DIE=1
 }
 
-if automake-1.10 --version < /dev/null > /dev/null 2>&1 ; then
+if automake-1.12 --version < /dev/null > /dev/null 2>&1 ; then
+    AUTOMAKE=automake-1.12
+    ACLOCAL=aclocal-1.12
+elif automake-1.11 --version < /dev/null > /dev/null 2>&1 ; then
+    AUTOMAKE=automake-1.11
+    ACLOCAL=aclocal-1.11
+elif automake-1.10 --version < /dev/null > /dev/null 2>&1 ; then
     AUTOMAKE=automake-1.10
     ACLOCAL=aclocal-1.10
 elif automake-1.9 --version < /dev/null > /dev/null 2>&1 ; then
@@ -38,7 +44,12 @@ else
         DIE=1
 fi
 
-(libtool --version) < /dev/null > /dev/null 2>&1 || {
+if glibtool --version < /dev/null > /dev/null 2>&1; then
+     LIBTOOL=glibtool
+     LIBTOOLIZE=glibtoolize
+fi
+
+($LIBTOOL --version) < /dev/null > /dev/null 2>&1 || {
 	echo
 	echo "You must have libtool installed to compile $PROJECT."
 	echo "Get http://ftp.gnu.org/gnu/libtool/libtool-1.5.22.tar.gz"
@@ -49,7 +60,7 @@ if test "$DIE" -eq 1; then
 	exit 1
 fi
 
-libtoolize --force --copy
+$LIBTOOLIZE --force --copy
 
 $ACLOCAL $ACLOCAL_FLAGS
 autoheader
