@@ -15,10 +15,10 @@ AC_PROG_MAKE_SET
 AM_DISABLE_STATIC
 AM_PROG_LIBTOOL
 
-PKG_CHECK_MODULES(GTK, gtk+-2.0 >= 2.10.0,,
-                  AC_MSG_ERROR([GTK+ 2.10 is required to compile quartz-engine]))
+PKG_CHECK_MODULES(GTK, gtk+-3.0 >= 3.0.0,,
+                  AC_MSG_ERROR([GTK+ 3.0 is required to compile quartz-engine]))
 
-GTK_VERSION=`$PKG_CONFIG --variable=gtk_binary_version gtk+-2.0`
+GTK_VERSION=`$PKG_CONFIG --variable=gtk_binary_version gtk+-3.0`
 AC_SUBST(GTK_VERSION)
 
 AC_OUTPUT([
