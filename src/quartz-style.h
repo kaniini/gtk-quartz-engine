@@ -21,7 +21,7 @@
 #ifndef QUARTZ_STYLE_H
 #define QUARTZ_STYLE_H
 
-#include <gtk/gtkstyle.h>
+#include <gtk/gtk.h>
 
 typedef struct _QuartzStyle QuartzStyle;
 typedef struct _QuartzStyleClass QuartzStyleClass;
